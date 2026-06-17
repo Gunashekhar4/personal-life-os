@@ -1,0 +1,8 @@
+{
+  "name": "Personal AI Life OS",
+  "description": "Your central station for productivity, planning, tracking, and AI-powered insights, integrated with Google Sheets and Google Drive.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
