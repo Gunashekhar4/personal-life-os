@@ -2,7 +2,6 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import { GoogleGenAI, Type } from "@google/genai";
-import { createServer as createViteServer } from "vite";
 
 dotenv.config();
 
@@ -374,6 +373,8 @@ Ensure your tone is professional, technical, clear, and highly focused. Limit re
 // Serve Frontend Bundle with Vite integration
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
+    const viteModuleName = "vite";
+    const { createServer: createViteServer } = await import(viteModuleName);
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
