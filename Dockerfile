@@ -1,41 +1,39 @@
-# Multi-stage Dockerfile for Personal AI Life OS
-
-# 1. Build Stage
+# Build stage
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy package configurations
+# Copy package descriptors
 COPY package*.json ./
 
-# Install all dependencies (including devDependencies)
-RUN npm ci
+# Install all dependencies (including devDependencies for build tools)
+RUN npm install
 
-# Copy the rest of the application files
+# Copy full application source
 COPY . .
 
-# Build the React frontend (Vite) and Node backend (esbuild)
+# Build Vite frontend and esbuild Compiled node backend
 RUN npm run build
 
-# 2. Production Runtime Stage
-FROM node:20-alpine AS runner
+# Production runtime stage
+FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package configurations
+ENV NODE_ENV=production
+ENV PORT=3000
+
+# Copy package files for dependency references
 COPY package*.json ./
 
-# Install only production dependencies (Express, etc.)
-RUN npm ci --only=production
+# Install only production dependencies
+RUN npm install --omit=dev
 
-# Copy built artifacts from builder stage (statically built dist directory and server.cjs)
+# Copy compiled build directory from builder
 COPY --from=builder /app/dist ./dist
 
-# Expose the API and Web Server port
+# Expose server ingress port
 EXPOSE 3000
 
-# Set environment to production
-ENV NODE_ENV=production
-
-# Start Express server hosting both the client and API endpoints
-CMD ["npm", "start"]
+# Run full-stack engine
+CMD ["npm", "run", "start"]
