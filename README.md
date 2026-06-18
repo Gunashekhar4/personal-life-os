@@ -381,8 +381,12 @@ This project was built primarily for personal use, but suggestions, ideas, and f
 
 ---
 
-# 📜 License
+## 📜 License
 
-MIT License
+This project is licensed under the MIT License.
+
+You are free to use, modify, and distribute this project in accordance with the license terms.
+
+See the [LICENSE](LICENSE) file for details.
 
 Feel free to fork, modify, and adapt the project for your own productivity workflow.
