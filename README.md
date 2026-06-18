@@ -7,6 +7,7 @@ Built to replace my fragmented workflow across Google Sheets, Notion, notes apps
 ## 🌐 Live Demo
 
 https://personal-life-os-project.vercel.app/
+
 https://personal-life-os-hsdl.onrender.com/
 
 ## 📂 GitHub Repository
